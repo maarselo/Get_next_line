@@ -10,7 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*He conseguido entender variable estatica, que cuadn ola llaman las funciones se guarda su resultado,
+ * y hemos copiado la primera linea del buffer size en un ezpacio de memroia dinamico y devolver*/
 #include "get_next_line.h"
+#include <stdlib.h>
+#include <fcntl.h>
+
+int	ft_checklen(char const *str);
+
+void	*ft_memcpy(void *to, const void *from, size_t numBytes)
+{
+	unsigned char	*dest;
+	unsigned char	*src;
+
+	dest = (unsigned char *)to;
+	src = (unsigned char *)from;
+	while (numBytes--)
+		*dest++ = *src++;
+	return (to);
+}
+
+char	*ft_strdup(const char *str)
+{
+	char	*ptr;
+	size_t	len;
+
+	len = ft_checklen(str);
+	ptr = (char *)malloc((len + 1)* sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[len + 1] = '\0';
+	return (ft_memcpy(ptr, str, len));
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	s_len;
+	char	*substr;
+
+	s_len = ft_checklen(s);
+	if (!s)
+		return (NULL);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (start + len > s_len)
+		len = s_len - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	i = 0;
+	while (i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
 
 int	ft_checkn(char *str)
 {
@@ -25,22 +80,52 @@ int	ft_checkn(char *str)
 	}
 	return (0);
 }
+
+int	ft_checklen(char const *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
+
+}
+
 char	*get_next_line(int fd)
 {
-	//static char	*buffer;
-	char	*buffer_tmp;
+	static char	buffer[BUFFER_SIZE + 1];
 	size_t	bytes_read;
+	size_t	len;
+	char	*line;
 
-	if (fd = -1 || BUFER_SIZE <= 0)
+	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (!buffer_tmp)
-		return(NULL);
 	bytes_read = 1;
-	while (bytes_read > 0 && ft_checkn(buffer))
+	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-
+		buffer[bytes_read] = '\0';
+		len = ft_checklen(buffer);
+		line = ft_substr(buffer, 0, len);
+		break;	
 	}
+	return (line);
+}
 
+#include <stdio.h>
+
+int	main(void)
+{
+	int	fd = open("ejemplo.txt", O_RDONLY);
+	if (fd == -1) {
+		puts("No se puede abrir");
+		return 1;
+	
+	}
+	char	*ptr = get_next_line(fd);
+	printf("%s", ptr);
+	return 0;
 }
