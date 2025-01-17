@@ -6,21 +6,11 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:51:01 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/15 13:50:28 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:02:28 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define  BUFFER_SIZE 42
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
