@@ -6,7 +6,7 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:41:11 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/18 16:04:13 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/18 21:35:08 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char    *ft_strchr(const char *s, int c)
 {
         int     i;
 
+	if (!s)
+		return(NULL);
         i = 0;
         while (s[i] != c && s[i])
                 i++;
