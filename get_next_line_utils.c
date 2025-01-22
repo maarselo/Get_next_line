@@ -5,54 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 14:41:11 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/18 21:35:08 by mvillavi         ###   ########.fr       */
+/*   Created: 2025/01/22 10:39:44 by mvillavi          #+#    #+#             */
+/*   Updated: 2025/01/22 14:20:46 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t  ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-        int     i;
+	int	i;
 
-        if (!str)
-                return (0);
-        i = 0;
-        while (str[i])
-                i++;
-        return (i);
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-char    *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-        int     i;
+	int	i;
 
 	if (!s)
-		return(NULL);
-        i = 0;
-        while (s[i] != c && s[i])
-                i++;
-        if (c == s[i])
-                return ((char *)&s[i]);
-        return (NULL);
+		return (NULL);
+	i = 0;
+	while (s[i] != c && s[i])
+		i++;
+	if (c == s[i])
+		return ((char *)&s[i]);
+	return (NULL);
 }
 
-char    *ft_strdup(const char *str)
+char	*ft_strdup(const char *str)
 {
-        char    *ptr;
-        size_t  len;
-        size_t  i;
+	char	*ptr;
+	size_t	len;
+	size_t	i;
 
-        len = ft_strlen(str);
-        ptr = (char *)malloc((len + 1) * sizeof(char));
-        if (ptr == NULL)
-                return (NULL);
-        i = -1;
-        while (++i < len)
-                ptr[i] = str[i];
-        ptr[i] = '\0';
-        return (ptr);
+	len = ft_strlen(str);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		ptr[i] = str[i];
+	ptr[i] = '\0';
+	return (ptr);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

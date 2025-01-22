@@ -5,108 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 11:05:49 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/18 22:41:45 by mvillavi         ###   ########.fr       */
+/*   Created: 2025/01/22 10:39:01 by mvillavi          #+#    #+#             */
+/*   Updated: 2025/01/22 15:53:18 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_free(char *ptr)
+static void	ft_buffjoin(char **buffer, char *tmp_buffer)
 {
-	free(ptr);
+	char	*tmp;
+
+	if (!buffer || !tmp_buffer)
+		return ;
+	tmp = *buffer;
+	*buffer = ft_strjoin(*buffer, tmp_buffer);
+	free(tmp);
 }
 
-char	*ft_fnextline(char *buffer)
+static char	*ft_getline(char *buffer)
 {
 	size_t	i;
-	size_t	len;
-	char	*ptr;
 
 	i = 0;
-	len = ft_strlen(buffer);
 	while (buffer[i] && buffer[i] != '\n')
-	       i++;
-	if (buffer[i] == '\n')
 		i++;
-	ptr = ft_substr(buffer, i, len - i);
-	if (!ptr)
-		return (NULL);	
-	ft_free(buffer);
-	return (ptr);
-}
-
-char	*ft_findline(char *buffer)
-{
-	size_t	i;
-
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-	       i++;
 	if (buffer[i] == '\n')
 		i++;
 	return (ft_substr(buffer, 0, i));
 }
 
-char	*ft_read(int fd , char	*buffer)
+static void	ft_nextline(char **buffer)
 {
-	char	*tmp_buffer;
 	char	*tmp;
+	size_t	i;
+	size_t	len;
+
+	if (!*buffer)
+		return ;
+	i = 0;
+	tmp = *buffer;
+	while ((*buffer)[i] && (*buffer)[i] != '\n')
+		i++;
+	if ((*buffer)[i] == '\n')
+		i++;
+	len = ft_strlen(*buffer);
+	*buffer = ft_substr(*buffer, i, len - i);
+	free(tmp);
+}
+
+static void	ft_read(int fd, char **buffer)
+{
 	ssize_t	bytes_read;
+	char	*tmp_buffer;
 
 	tmp_buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp_buffer)
-		return (NULL);
+		return ;
 	bytes_read = 1;
 	while (bytes_read > 0 && !ft_strchr(tmp_buffer, '\n'))
 	{
-		bytes_read = read(fd, tmp_buffer,BUFFER_SIZE);
-		if (bytes_read == -1)
+		bytes_read = read(fd, tmp_buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
 		{
-			ft_free(tmp_buffer);
-			return (NULL);
+			free(tmp_buffer);
+			return ;
 		}
 		tmp_buffer[bytes_read] = '\0';
-		tmp = ft_strjoin(buffer, tmp_buffer);
-		if (!tmp)
+		ft_buffjoin(buffer, tmp_buffer);
+		if (!*buffer)
 		{
-			ft_free(tmp_buffer);
-			return (NULL);
+			free(tmp_buffer);
+			return ;
 		}
-		ft_free(buffer);
-		buffer = tmp;
-		//if (ft_strchr(tmp_buffer, '\n'))//
-		//	break;
 	}
-	ft_free(tmp_buffer);
-	return (buffer);
+	free(tmp_buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
-	char	*line;
+	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_read(fd, buffer);
+	ft_read(fd, &buffer);
 	if (!buffer || !*buffer)
 	{
-		ft_free(buffer);
-		buffer = NULL;
+		free(buffer);
 		return (NULL);
 	}
-	line = ft_findline(buffer);
+	line = ft_getline(buffer);
 	if (!line)
-	{
-		ft_free(buffer);
-		buffer = NULL;
-		return (NULL);
-	}
-	buffer = ft_fnextline(buffer);
+		free(buffer);
+	ft_nextline(&buffer);
 	return (line);
 }
-
+/*
+#include <fcntl.h>
 #include <stdio.h>
 
 int main(void)
@@ -120,11 +116,10 @@ int main(void)
     char *line = get_next_line(fd);
     while (line != NULL)
     {
-        printf("%s", line);
-        free(line); 
-        line = get_next_line(fd); 
+	    printf("%s", line);
+	    free(line); 
+	    line = get_next_line(fd); 
     }
-
     close(fd); 
     return 0;
-}
+}*/
