@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:12:40 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 17:35:15 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:43:38 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdio.h>
-#include "get_next_line.h"
+#include "../get_next_line.h"
 
 int main(int argc, char **argv)
 {
