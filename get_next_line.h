@@ -6,14 +6,14 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:11 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/22 16:32:24 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:10:37 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-//# define BUFFER_SIZE 42
+# define BUFFER_SIZE 42
 
 # include <stdlib.h>
 # include <unistd.h>
