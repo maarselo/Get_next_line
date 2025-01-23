@@ -6,7 +6,7 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:01 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/22 19:07:11 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:04:37 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*get_next_line(int fd)
 	static char	*buffer[1024];
 	char		*line;
 
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ft_read(fd, &buffer[fd]);
 	if (!buffer[fd] || !*buffer[fd])
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	ft_nextline(&buffer[fd]);
 	return (line);
 }
-
+/*
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -110,25 +110,38 @@ int main(void)
     int fd1 = open("test1.txt", O_RDONLY); 
     int fd2 = open("test2.txt", O_RDONLY); 
     int fd3 = open("test3.txt", O_RDONLY); 
-    /*if (fd == -1)
+    if (fd == -1)
     {
         perror("Error abriendo el archivo");
         return 1;
-    }*/
+    }
     char *line1 = get_next_line(fd1);
     char *line2 = get_next_line(fd2);
     char *line3 = get_next_line(fd3);
-
+	    printf("%s", line1);
+	    printf("%s", line2);
+	    printf("%s", line3);
+	    fflush(stdout);
+    line1 = get_next_line(fd1);
+    line2 = get_next_line(fd2);
+    line3 = get_next_line(fd3);
+	    printf("%s", line1);
+	    printf("%s", line2);
+	    printf("%s", line3);
+	    fflush(stdout);
+    line1 = get_next_line(fd1);
+    line2 = get_next_line(fd2);
+    line3 = get_next_line(fd3);
 	    printf("%s", line1);
 	    printf("%s", line2);
 	    printf("%s", line3);
 
-    /*while (line != NULL)
+    while (line != NULL)
     {
 	    printf("%s", line);
 	    free(line); 
 	    line = get_next_line(fd); 
-    }*/
+    }
     //close(fd); 
     return 0;
-}
+}*/

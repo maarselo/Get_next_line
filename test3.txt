@@ -1,5 +1,0 @@
-Primera linea de archivo 3
-
-Segunda linea de archivo 3
-
-Tercera linea de archivo 3
