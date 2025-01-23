@@ -6,7 +6,7 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:01 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/22 15:53:18 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:02:34 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,25 +101,3 @@ char	*get_next_line(int fd)
 	ft_nextline(&buffer);
 	return (line);
 }
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int main(void)
-{
-    int fd = open("test.txt", O_RDONLY); 
-    if (fd == -1)
-    {
-        perror("Error abriendo el archivo");
-        return 1;
-    }
-    char *line = get_next_line(fd);
-    while (line != NULL)
-    {
-	    printf("%s", line);
-	    free(line); 
-	    line = get_next_line(fd); 
-    }
-    close(fd); 
-    return 0;
-}*/
