@@ -6,7 +6,7 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:35:34 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/24 13:06:36 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:25:13 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include <stdio.h>
 #include "../get_next_line_bonus.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int	fd1;
-	int	fd2;
+	int		fd1;
+	int		fd2;
 	char	*line1;
 	char	*line2;
-	
+
 	if (argc != 3)
 	{
 		printf("Seleccione dos archivos");
@@ -29,18 +29,20 @@ int main(int argc, char **argv)
 	}
 	fd1 = open(argv[1], O_RDONLY);
 	fd2 = open(argv[2], O_RDONLY);
-	if (fd1 < 0 || fd2 < 0) {
+	if (fd1 < 0 || fd2 < 0)
+	{
 		perror("Error abriendo los archivos");
-		if (fd1 >= 0) 
+		if (fd1 >= 0)
 			close(fd1);
-		if (fd2 >= 0) 
+		if (fd2 >= 0)
 			close(fd2);
 		return (1);
 	}
 	printf("Leyendo las primeras lineas:\n");
 	line1 = get_next_line(fd1);
 	line2 = get_next_line(fd2);
-	if (line1) {
+	if (line1)
+	{
 		printf("Archivo 1: %s", line1);
 		free(line1);
 	}
