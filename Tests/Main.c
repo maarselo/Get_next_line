@@ -6,9 +6,11 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:12:40 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 17:43:38 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:06:13 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//This is the main for testing the get_next_line
 
 #include <fcntl.h>
 #include <stdio.h>
