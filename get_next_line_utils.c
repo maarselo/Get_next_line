@@ -6,20 +6,20 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:44 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 18:39:59 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:07:00 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Estas funciones son las que apoyo a Get_next_line;
- * Ft_strlen ya que las utilizo en estas mismas y para medir el size de 
- * buffer.
- * Ft_strchr la uso para comprobar si el tmp_buffer contiene un salto de 
- * linea y si lo que me da es NULL, para que siga el bucle.
- * Ft_strdup la tengo ya que la uso para duplicar en estas mismas.
- * Ft_substr, la utilizo para sacar la nueva linea y mover el buffer a la
- * siguiente linea.
- * Ft_strjoin, la utilizo en la funcion de unir las buffer, pero la uso dentro
- * para unirlos en ella, y con un temporal liberar el antiguo buffer. */
+/*These are the auxiliary functions that I use:
+* 1. Ft_strlen since I use them in these same ones and to measure the size of
+* the buffer.
+* 2. Ft_strchr to check if the tmp_buffer contains a line break and if what it 
+* gives me is NULL, to continue the loop.
+* 3. Ft_strdup since I use it to duplicate in these same ones.
+* 4. Ft_substr, I use it to get the new line and move the buffer to the next 
+* line.
+* 5. Ft_strjoin, I use it in the function to join the buffers, but I use it
+* inside to join them in it, and with a temporary to release the old buffer.*/
 
 #include "get_next_line.h"
 

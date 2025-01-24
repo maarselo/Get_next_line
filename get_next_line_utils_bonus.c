@@ -6,11 +6,11 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:44 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 18:41:58 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:07:27 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Estas funciones son las mismas y el mismo uso que las que no son bonus.
+//These functions are the same and have the same usage as the non-bonus ones.
 
 #include "get_next_line_bonus.h"
 
