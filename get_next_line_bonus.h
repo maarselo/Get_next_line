@@ -6,11 +6,11 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:11 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 19:46:19 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:02:07 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Es el mismo .h y el mismo uso que las que no son bonus
+//It is the same .h and the same usage as the non-bonus ones
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H

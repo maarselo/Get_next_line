@@ -6,14 +6,14 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:11 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 18:47:16 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:01:44 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Primero, protegemos de inclusiones dobles, y si en caso no nos defines BUFFER
- *SIZE nos encargamos de definirlo nosotros, y cerramos ambos condicionales.
- *Incluimos las libreria de malloc y free, y la de read. Y ponemos los 
- *prototipos de las funciones auxiliares y la del proyecto*/
+/*First, we protect against double inclusions, and if you do not define BUFFER
+* SIZE we will define it ourselves, and we close both conditionals.
+* We include the malloc and free libraries, and the read one. And we put the
+* prototypes of the auxiliary functions and the project one*/
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
