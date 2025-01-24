@@ -6,9 +6,11 @@
 /*   By: mvillavi <mvillavi@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:39:01 by mvillavi          #+#    #+#             */
-/*   Updated: 2025/01/23 17:02:34 by mvillavi         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:58:01 by mvillavi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//This is the main file of the project
 
 #include "get_next_line.h"
 
