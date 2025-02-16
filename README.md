@@ -37,3 +37,11 @@ La función debe ser capaz de:
 
 ```c
 char *get_next_line(int fd);
+
+## 🛠️ Compilación del Proyecto
+
+Para compilar tu proyecto **get_next_line**, debes usar el siguiente comando en la terminal:
+
+```bash
+cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o get_next_line
+
