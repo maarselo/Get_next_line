@@ -45,4 +45,47 @@ Para compilar tu proyecto **get_next_line**, debes usar el siguiente comando en 
 
 ```bash
 cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o get_next_line
+````
+## 🎁 Parte Bonus: Mejorando `get_next_line()` para Múltiples Descriptores de Archivo
+
+En esta parte bonus del proyecto, la tarea es **mejorar la función `get_next_line()`** para que sea capaz de manejar **múltiples descriptores de archivo** a la vez, utilizando una sola variable estática. A continuación, te explico cómo lo resolví utilizando un array de punteros y una solución optimizada.
+
+### **Solución Propuesta: Array de Punteros Estáticos**
+
+En lugar de recurrir a estructuras complejas o almacenar estados de cada descriptor de archivo en múltiples variables estáticas, opté por una solución simple: utilicé un **array estático de punteros** para gestionar el estado de cada descriptor de archivo (fd).
+
+#### **Explicación de la Solución:**
+
+1. **`static char *buffer[1024];`**:
+   - El array `buffer` tiene un tamaño de 1024 elementos, donde cada elemento es un puntero que apunta a un buffer de lectura para un **descriptor de archivo** específico.
+   - **¿Por qué 1024?** Este valor es arbitrario y puede modificarse según las necesidades del proyecto. Se elige un valor lo suficientemente grande para manejar múltiples descriptores de archivo, que es el máximo de descriptores comunes en sistemas Unix.
+
+2. **Almacenamiento de la información de cada `fd`:**
+   - Cada vez que se llama a `get_next_line()` para un `fd` particular, se asigna un buffer específico para ese `fd` en el array `buffer`.
+   - Esto permite leer de múltiples archivos de manera simultánea sin interferir entre ellos.
+
+#### **Código del Bonus (Implementación):**
+
+```c
+#include "get_next_line.h"
+
+static char *buffer[1024];  // Array de punteros para manejar múltiples fds
+
+char *get_next_line(int fd) {
+    static char *buf[1024];  // Buffer estático para cada descriptor de archivo
+
+    if (fd < 0 || fd >= 1024) return NULL;  // Verificación de fd válido
+
+    if (!buf[fd]) {
+        buf[fd] = malloc(BUFFER_SIZE);
+        if (!buf[fd]) return NULL;  // Asignación de buffer si no existe
+    }
+
+    // Leer datos del fd y procesarlos
+    int bytes_read = read(fd, buf[fd], BUFFER_SIZE);
+    if (bytes_read <= 0) return NULL;
+
+    // Procesar los datos y devolver la línea
+    return process_line(buf[fd]);
+}
 
