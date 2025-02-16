@@ -37,6 +37,7 @@ La función debe ser capaz de:
 
 ```c
 char *get_next_line(int fd);
+```
 
 ## 🛠️ Compilación del Proyecto
 
