@@ -67,25 +67,23 @@ En lugar de recurrir a estructuras complejas o almacenar estados de cada descrip
 #### **Código del Bonus (Implementación):**
 
 ```c
-#include "get_next_line.h"
+char	*get_next_line(int fd)
+{
+	static char	*buffer[1024];
+	char		*line;
 
-static char *buffer[1024];  // Array de punteros para manejar múltiples fds
-
-char *get_next_line(int fd) {
-    static char *buf[1024];  // Buffer estático para cada descriptor de archivo
-
-    if (fd < 0 || fd >= 1024) return NULL;  // Verificación de fd válido
-
-    if (!buf[fd]) {
-        buf[fd] = malloc(BUFFER_SIZE);
-        if (!buf[fd]) return NULL;  // Asignación de buffer si no existe
-    }
-
-    // Leer datos del fd y procesarlos
-    int bytes_read = read(fd, buf[fd], BUFFER_SIZE);
-    if (bytes_read <= 0) return NULL;
-
-    // Procesar los datos y devolver la línea
-    return process_line(buf[fd]);
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+		return (NULL);
+	ft_read(fd, &buffer[fd]);
+	if (!buffer[fd] || !*buffer[fd])
+	{
+		free(buffer[fd]);
+		return (NULL);
+	}
+	line = ft_getline(buffer[fd]);
+	if (!line)
+		free(buffer[fd]);
+	ft_nextline(&buffer[fd]);
+	return (line);
 }
 
